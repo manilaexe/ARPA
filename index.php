@@ -43,14 +43,14 @@
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $temperatura = $_POST["inputValore"];;
+            $temp = $_POST["inputValore"];;
             $data = date('Y-m-d');
             $sostanza = $_POST["sostanza"];
 
-            $sql = "INSERT INTO rilevazione (temperatura, data, sostanza) VALUES (:temperatura, :data, :sostanza)";
+            $sql = "INSERT INTO rilevazione (temp, sostanza) VALUES (:temp, :sostanza)";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':temperatura', $temperatura);
-            $stmt->bindParam(':data', $data);
+            $stmt->bindParam(':temp', $temp);
+            //$stmt->bindParam(':data', $data);
             $stmt->bindParam(':sostanza', $sostanza);
             $stmt->execute();
 
