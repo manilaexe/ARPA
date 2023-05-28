@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 27, 2023 alle 01:06
+-- Creato il: Mag 29, 2023 alle 01:01
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -30,9 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `rilevazione` (
   `id` int(11) NOT NULL,
   `temp` float NOT NULL,
-  `date_r` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `sostanza` float NOT NULL
+  `date_r` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `sostanza` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `rilevazione`
+--
+
+INSERT INTO `rilevazione` (`id`, `temp`, `date_r`, `sostanza`) VALUES
+(1, 25, '2023-05-28 23:01:11', 'CO2'),
+(2, 13, '2023-05-28 23:01:11', 'CO2');
 
 --
 -- Indici per le tabelle scaricate
@@ -52,7 +60,7 @@ ALTER TABLE `rilevazione`
 -- AUTO_INCREMENT per la tabella `rilevazione`
 --
 ALTER TABLE `rilevazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
