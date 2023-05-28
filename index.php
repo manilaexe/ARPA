@@ -6,7 +6,7 @@
 </head>
 <body>
     <header>
-        <h1 class="ciao">TEMPERATURA APPARTAMENTO</h1>
+        <h1 class="ciao">TEMPERATURA RILEVATA</h1>
     </header>
 	<div class="container">
     <form method="post">
