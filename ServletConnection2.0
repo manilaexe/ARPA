@@ -1,0 +1,120 @@
+package gpo;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.mysql.cj.jdbc.MysqlDataSource;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import 	java.sql.Statement;
+
+
+public class ServletConnection extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/ArpaDb";
+    static final String USER = "root";
+    static final String PASS = "";
+    
+    public ServletConnection() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		
+		
+	        response.setContentType("text/html");
+	        PrintWriter out = response.getWriter();
+
+	        Connection conn = null;
+	        Statement stmt = null;
+	        try {
+	            // Registrare il driver JDBC
+	            Class.forName(JDBC_DRIVER);
+
+	            // Aprire una connessione al database
+	            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+	            // Creare una query SQL
+	            String sql = "SELECT * FROM rilevazione";
+	            stmt = conn.createStatement();
+
+	            // Eseguire la query
+	            ResultSet rs = stmt.executeQuery(sql);
+
+	            // Elaborare i risultati
+	            while (rs.next()) {
+	                // Ottenere i valori dalla riga corrente
+	                int id = rs.getInt("id");
+	                float temperatura = rs.getFloat("temperatura");
+	                String date_r = rs.getString("date_r");
+	                float sostanza = rs.getFloat("sostanza");
+	                
+	                 
+	                // Stampare i valori
+	                out.println("ID: " + id + "<br>");
+	                out.println("Temperatura: " + temperatura + "<br>");
+	                out.println("date_r: "+date_r+"<br>");
+	                out.println("sostanza: "+sostanza+"<br>");
+	                
+	                out.println("<br>");
+	            }
+
+	            rs.close();
+	            stmt.close();
+	            conn.close();
+	        } catch (SQLException se) {
+	            se.printStackTrace();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            try {
+	                if (stmt != null)
+	                    stmt.close();
+	            } catch (SQLException se2) {
+	            }
+	            try {
+	                if (conn != null)
+	                    conn.close();
+	            } catch (SQLException se) {
+	                se.printStackTrace();
+	            }
+	        }
+
+	        out.close();
+	    }
+	
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
