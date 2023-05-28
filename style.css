@@ -1,0 +1,72 @@
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.random-number {
+    font-size: 48px;   
+    display: flex;
+    justify-content: center;
+    height: 70vh;
+    align-items: center;
+}
+
+header {
+    background-color: rgb(198, 233, 249);
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    border: 1px solid rgb(120, 209, 250);;
+}
+
+.scelta{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+a{
+    cursor: pointer;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    font-weight: bold;
+}
+
+.ciao{
+    font-size: 40px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.aaa{
+    display: flex;
+    flex-direction: column;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -200px;
+}
+button{
+    width: 50px;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
